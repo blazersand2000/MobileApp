@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.MainPage"
+             xmlns:converters="clr-namespace:MobileApp.Converters"
+             Title="{Binding Title}">
+  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <StackLayout Margin="5">
+    <StackLayout Orientation="Horizontal">
+      <Label WidthRequest="50" Text="First" VerticalOptions="CenterAndExpand"/>
+      <Entry Placeholder="First" Text="{Binding First.Value}" HorizontalOptions="FillAndExpand">
+        <Entry.Triggers>
+          <DataTrigger TargetType="Entry" Binding="{Binding First.IsValid}" Value="False">
+            <Setter Property="BackgroundColor" Value="Red" />
+          </DataTrigger>
+        </Entry.Triggers>
+      </Entry>
+    </StackLayout>
+    <Label Text="{Binding First.Errors, Converter={StaticResource FirstValidationErrorConverter}}" TextColor="Red"/>
+    <StackLayout Orientation="Horizontal">
+      <Label WidthRequest="50" Text="Last" VerticalOptions="CenterAndExpand"/>
+      <Entry Placeholder="Last" Text="{Binding Last.Value}" HorizontalOptions="FillAndExpand">
+        <Entry.Triggers>
+          <DataTrigger TargetType="Entry" Binding="{Binding Last.IsValid}" Value="False">
+            <Setter Property="BackgroundColor" Value="Red" />
+          </DataTrigger>
+        </Entry.Triggers>
+      </Entry>
+    </StackLayout>
+    <Label Text="{Binding Last.Errors, Converter={StaticResource FirstValidationErrorConverter}}" TextColor="Red"/>
+    <StackLayout Orientation="Horizontal">
+      <Label WidthRequest="50" Text="GPA" VerticalOptions="CenterAndExpand"/>
+      <Entry Placeholder="GPA" Text="{Binding GPA.Value}" HorizontalOptions="FillAndExpand">
+        <Entry.Triggers>
+          <DataTrigger TargetType="Entry" Binding="{Binding GPA.IsValid}" Value="False">
+            <Setter Property="BackgroundColor" Value="Red" />
+          </DataTrigger>
+        </Entry.Triggers>
+      </Entry>
+    </StackLayout>
+    <Label Text="{Binding GPA.Errors, Converter={StaticResource FirstValidationErrorConverter}}" TextColor="Red"/>
+  </StackLayout>
+
+</ContentPage>
